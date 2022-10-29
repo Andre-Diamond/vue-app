@@ -63,7 +63,7 @@
     }
   }
 
-  async function signout() {
+  async function signOut() {
   const { error } = await supabase.auth.signOut()
 }
 </script>
