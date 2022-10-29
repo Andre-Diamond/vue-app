@@ -71,6 +71,10 @@
 <template>
   <form class="form-widget" @submit.prevent="updateProfile">
     <div>
+      <label for="avatar_url">Profile</label>
+      <Avatar v-model:path="avatar_url" @upload="updateProfile" size="10" />
+    </div>
+    <div>
       <label for="email">Email</label>
       <input id="email" type="text" :value="session.user.email" disabled />
     </div>
@@ -78,7 +82,6 @@
       <label for="username">Name</label>
       <input id="username" type="text" v-model="username" />
     </div>
-    <Avatar v-model:path="avatar_url" @upload="updateProfile" size="10" />
     <div>
       <label for="website">Website</label>
       <input id="website" type="website" v-model="website" />
