@@ -32,7 +32,7 @@
 <template>
   <form class="row flex-center flex" @submit.prevent="signInWithDiscord()">
     <div class="col-6 form-widget">
-      <h1 class="header">Supabase + Vue 3</h1>
+      <h1 class="header">Login</h1>
       <p class="description">You need to login</p>
       <div>
         <input

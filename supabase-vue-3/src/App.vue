@@ -1,25 +1,18 @@
 <script setup>
-  import { onMounted, ref } from 'vue'
-  import Account from './components/Account.vue'
-  import Auth from './components/Auth.vue'
-  import { supabase } from './supabase'
-
-  const session = ref()
-
-  onMounted(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      session.value = data.session
-    })
-
-    supabase.auth.onAuthStateChange((_, _session) => {
-      session.value = _session
-    })
-  })
+  import Navbar from './components/NavBar.vue'
 </script>
 
 <template>
-  <div class="container" style="padding: 50px 0 100px 0">
-    <Account v-if="session" :session="session" />
-    <Auth v-else />
+  <div>
+    <Navbar />
   </div>
 </template>
+
+<style>
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css";
+body {
+  background-color: rgb(35, 20, 104);
+  height: 100vh;
+}
+</style>
