@@ -71,8 +71,10 @@ const session = ref()
   onMounted(() => {
     supabase.auth.getSession().then(({ data }) => {
       session.value = data.session
-      getProfile()
-      downloadImage()
+      if (session.value) {
+        getProfile()
+        downloadImage()
+      }
     })
 
     supabase.auth.onAuthStateChange((_, _session) => {
@@ -95,7 +97,7 @@ const session = ref()
           class="Avatar is-pulled-right m-4"
           :style="{ height: 2 + 'em', width: 2 + 'em' }"
         />
-        <p class="is-pulled-right mt-4 has-text-light" v-if="session" :session="session"> {{username}}</p>
+        <p class="is-pulled-right mt-4 has-text-light" v-if="session"> {{username}}</p>
         <p class="is-pulled-right m-4 has-text-light" v-else >Please sign in</p>
         <component :is="currentView" />
     </div>
@@ -104,5 +106,13 @@ const session = ref()
 <style>
 .Avatar {
   border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.Avatar:hover {
+  filter: brightness(1.2);
+  transform: scale(1.2);
+  border: 2px solid #65b5f6;
 }
 </style>
